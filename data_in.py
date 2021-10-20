@@ -4,8 +4,6 @@ import pandas as pd
 df_training = pd.DataFrame(columns=['observation', 'label'])
 df_testing = pd.DataFrame(columns=['observation', 'label'])
 
-print(os.getcwd())
-
 path_training_decepting = r'\data\training\decepting'
 path_training_truthful = r'\data\training\truthful'
 
@@ -33,5 +31,5 @@ for index, subpath in enumerate(paths_testing):
                     current_df = pd.DataFrame({'observation': [observation], 'label': [index % 2]})
                     df_testing = df_testing.append(current_df, ignore_index=True)
 
-print(df_training)
-print(df_testing)
+# print(df_training)
+# print(df_testing)
