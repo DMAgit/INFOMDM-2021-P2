@@ -43,14 +43,14 @@ def cleanData(text, lowercase=True, remove_stops=False, stemming=False, lemmatiz
 
 
 # get train and test X/y splits
-X_train = df_training['text']
+X_train = df_training['observation']
 y_train = df_training['label'].astype('int')
-X_test = df_testing['text']
+X_test = df_testing['observation']
 y_test = df_testing['label'].astype('int')
 
 # clean text
-X_train['text'] = X_train['text'].map(lambda x: cleanData(x, lowercase=lowercase, remove_stops=remove_stops, stemming=stemming, lemmatization=lemmatization))
-X_test['text'] = X_test['text'].map(lambda x: cleanData(x, lowercase=lowercase, remove_stops=remove_stops, stemming=stemming, lemmatization=lemmatization))
+X_train = X_train.map(lambda x: cleanData(x, lowercase=lowercase, remove_stops=remove_stops, stemming=stemming, lemmatization=lemmatization))
+X_test = X_test.map(lambda x: cleanData(x, lowercase=lowercase, remove_stops=remove_stops, stemming=stemming, lemmatization=lemmatization))
 
 # Create a Counter of tokens
 cv = CountVectorizer(ngram_range=ngram_range, min_df=min_df)  # we could change min_df and see differences
