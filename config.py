@@ -7,5 +7,5 @@ min_df = 1
 # Word normalization
 stemming = False
 lemmatization = False
-lowercase = False
+lowercase = True
 remove_stops = False
