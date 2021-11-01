@@ -11,6 +11,7 @@ from sklearn.metrics import confusion_matrix
 from data_preprocessing import train, y_train, test, y_test
 from getResults import getResults
 
+# --------------------------
 # Naïve Bayes
 NB_paramGrid = {'alpha': [0, 0.5, 1, 2]}
 
