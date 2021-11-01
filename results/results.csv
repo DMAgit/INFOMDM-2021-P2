@@ -1,0 +1,5 @@
+,Classifier,Parameters,Train Accuracy,Test Accuracy,Precision,Recall,F1-Score,CV Splits,Training time,ngram_range,min_df,stemming,lemmatization,lowercase,remove_stops
+0,MultinomialNB,"[('alpha', 1)]",0.990625,0.8359375,0.8771213073538655,0.875,0.8748239712095134,10,0.0009984970092773438,"(1, 1)",1,False,False,True,True
+1,LogisticRegression,"[('C', 0.1), ('penalty', 'l2')]",0.9953125,0.8390625,0.8338056998897811,0.83125,0.8309263825290596,10,0.006992340087890625,"(1, 1)",1,False,False,True,True
+2,DecisionTreeClassifier,"[('max_depth', 2), ('min_samples_split', 4)]",0.7390625,0.7046875,0.64377246444757,0.64375,0.6437360834407594,10,0.0039958953857421875,"(1, 1)",1,False,False,True,True
+3,RandomForestClassifier,"[('max_depth', 16), ('min_samples_split', 8), ('n_estimators', 500)]",0.990625,0.8484375,0.8508771929824561,0.85,0.849906191369606,10,0.6563282012939453,"(1, 1)",1,False,False,True,True
