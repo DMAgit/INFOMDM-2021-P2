@@ -65,7 +65,7 @@ print(confusion_matrix(y_test, y_pred))
 
 # --------------------------
 # Random Forests
-RF_paramGrid = {'n_estimators': [10, 50, 100, 500, 1000, 5000], 'max_depth': [None, 2, 4],
+RF_paramGrid = {'n_estimators': [10, 50, 100, 500, 1000], 'max_depth': [None, 2, 4],
                 'min_samples_split': [2, 4], 'ccp_alpha': [0, 0.01, 0.02, 0.03, 0.05, 0.1]}
 
 RF_gridSearch_model = GridSearchCV(RandomForestClassifier(), RF_paramGrid, cv=10, n_jobs=-1)
