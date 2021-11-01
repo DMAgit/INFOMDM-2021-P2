@@ -1,4 +1,5 @@
 import re
+import os
 from sklearn.metrics import precision_recall_fscore_support
 import pandas as pd
 import numpy as np
@@ -6,6 +7,24 @@ import string
 
 from data_preprocessing import y_train, y_test, train, test
 from data_preprocessing import stops, X_train, X_test
+
+import config
+
+
+def get_nonexistant_path(filename):  # https://stackoverflow.com/a/43167607/14598178
+    """
+    Get the path to a filename which does not exist by incrementing path.
+    """
+
+    if not os.path.exists(filename):
+        return filename
+    filename, file_extension = os.path.splitext(filename)
+    i = 1
+    new_filename = "{}-{}{}".format(filename, i, file_extension)
+    while os.path.exists(new_filename):
+        i += 1
+        new_filename = "{}-{}{}".format(filename, i, file_extension)
+    return new_filename
 
 
 def getResults(algoList, verbose=True, save=False):
@@ -18,10 +37,13 @@ def getResults(algoList, verbose=True, save=False):
     beforeParenthesis = re.compile("(.*?)\s*\(")
 
     dfResults = pd.DataFrame(columns=['Classifier', 'Parameters', 'Train Accuracy', 'Test Accuracy',
-                                      'Precision', 'Recall', 'F1-Score', 'CV Splits', 'Training time'])
+                                      'Precision', 'Recall', 'F1-Score', 'CV Splits', 'Training time',
+                                      'ngram_range', 'min_df', 'stemming', 'lemmatization', 'lowercase',
+                                      'remove_stops'])
     for algo in algoList:
         tempList = []
 
+        # model things
         classifier = beforeParenthesis.match(str(algo.best_estimator_)).group(1)
         tempList.append(classifier)
 
@@ -46,10 +68,20 @@ def getResults(algoList, verbose=True, save=False):
         trainTime = algo.refit_time_
         tempList.append(trainTime)
 
+        # config things
+        tempList.append(config.ngram_range)
+        tempList.append(config.min_df)
+        tempList.append(config.stemming)
+        tempList.append(config.lemmatization)
+        tempList.append(config.lowercase)
+        tempList.append(config.remove_stops)
+
         dfResults.loc[len(dfResults)] = tempList
 
     if save:
-        dfResults.to_csv(r'results/results.csv')
+        os.chdir(r'D:/PycharmProjects/INFOMDM-2021-P2/results')
+        dfResults.to_csv(get_nonexistant_path('results.csv'))
+        os.chdir(r'D:/PycharmProjects/INFOMDM-2021-P2')
 
     if verbose:
         print(dfResults)
