@@ -13,7 +13,7 @@ from getResults import getResults
 
 # --------------------------
 # Naïve Bayes
-NB_paramGrid = {'alpha': [0, 0.5, 1, 2]}
+NB_paramGrid = {'alpha': [0.01, 0.1, 0.25, 0.5, 1, 2]}
 
 NB_gridSearch_model = GridSearchCV(MultinomialNB(), NB_paramGrid, cv=10, n_jobs=-1)
 NB_gridSearch_model.fit(train, y_train)
